@@ -3,6 +3,7 @@ package com.springboot.relationship.data.repository;
 import com.springboot.relationship.data.entity.Category;
 import com.springboot.relationship.data.entity.Product;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -10,8 +11,10 @@ import java.util.List;
 @SpringBootTest
 class CategoryRepositoryTest {
 
+    @Autowired
     ProductRepository productRepository;
 
+    @Autowired
     CategoryRepository categoryRepository;
 
     @Test

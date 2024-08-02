@@ -27,6 +27,7 @@ public class Producer extends BaseEntity {
     @ToString.Exclude
     private List<Product> products = new ArrayList<>();
 
+
     public void addProduct(Product product) {
         products.add(product);
     }

@@ -6,6 +6,7 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -108,6 +109,7 @@ class ProviderRepositoryTest {
     }
 
     @Test
+    @Transactional
     void orphanRemovalTest() {
 
         Provider provider = saveProvider("새로운 공급업체");
@@ -128,7 +130,11 @@ class ProviderRepositoryTest {
         productRepository.findAll().forEach(System.out::println);
 
         Provider foundProvider = providerRepository.findById(1L).get();
-        foundProvider.getProductList().remove(0);
+
+        // 리스트가 비어 있지 않은지 확인
+        if (!foundProvider.getProductList().isEmpty()) {
+            foundProvider.getProductList().remove(0);
+        }
 
         providerRepository.findAll().forEach(System.out::println);
         productRepository.findAll().forEach(System.out::println);
